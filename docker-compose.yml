@@ -1,0 +1,14 @@
+services:
+  notes-app:
+    build: .
+    expose:
+      - "5000"
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - notes-app
